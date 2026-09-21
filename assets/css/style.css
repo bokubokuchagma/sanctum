@@ -250,7 +250,17 @@ a:hover { color: var(--accent-hover); }
 /* Remove drop cap for modern look */
 .prose p.lead::first-letter { font-size: inherit; float: none; color: inherit; font-weight: inherit; }
 
-.prose h1, .prose h2, .prose h3 {
+/* Make the first H1 in the document look like the main chapter title */
+.prose h1:first-of-type {
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 3rem 0 4rem;
+}
+
+.prose h2, .prose h3 {
   color: var(--text-primary);
   font-weight: 600;
   letter-spacing: -0.02em;

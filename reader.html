@@ -57,20 +57,11 @@
         <a href="./archive.html">Archive</a> &rsaquo;
         <span id="breadcrumb-chapter">Loading...</span>
       </div>
-      <div class="reader-meta-tag" id="meta-act"></div>
     </div>
 
     <div id="loading" class="loading-spinner">Summoning chapter...</div>
 
     <div id="reader-content">
-      <header class="chapter-header">
-        <div class="chapter-pretitle" id="display-act"></div>
-        <h1 class="chapter-main-title" id="display-title"></h1>
-        <div class="chapter-stats">
-          <span id="display-date"></span>
-        </div>
-      </header>
-
       <article class="prose" id="markdown-body">
         <!-- Markdown injected here -->
       </article>
@@ -99,25 +90,13 @@
         if (!response.ok) throw new Error('Chapter not found');
         const text = await response.text();
         
-        // Very basic frontmatter parser (--- ... ---)
         let content = text;
-        let meta = { title: 'Untitled', act: '', date: '' };
+        let pageTitle = 'Chapter';
         
-        if (text.startsWith('---')) {
-          const endIdx = text.indexOf('---', 3);
-          if (endIdx > -1) {
-            const fm = text.substring(3, endIdx);
-            content = text.substring(endIdx + 3).trim();
-            
-            fm.split('\n').forEach(line => {
-              const colon = line.indexOf(':');
-              if (colon > -1) {
-                const key = line.substring(0, colon).trim();
-                const val = line.substring(colon + 1).trim().replace(/^['"](.*)['"]$/, '$1');
-                meta[key] = val;
-              }
-            });
-          }
+        // Extract the first H1 (# Title) to use for the document title
+        const h1Match = content.match(/^#\s+(.+)$/m);
+        if (h1Match) {
+          pageTitle = h1Match[1].trim();
         }
 
         // Setup custom renderer for images and scene breaks
@@ -135,12 +114,8 @@
         marked.setOptions({ renderer });
 
         // Apply metadata
-        document.title = `${meta.title} | Aetheria Chronicles`;
-        document.getElementById('breadcrumb-chapter').textContent = meta.title;
-        document.getElementById('meta-act').textContent = meta.act;
-        document.getElementById('display-act').textContent = meta.act;
-        document.getElementById('display-title').textContent = meta.title;
-        document.getElementById('display-date').textContent = meta.date;
+        document.title = `${pageTitle} | Aetheria Chronicles`;
+        document.getElementById('breadcrumb-chapter').textContent = pageTitle;
         
         // Render Markdown
         document.getElementById('markdown-body').innerHTML = marked.parse(content);

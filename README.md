@@ -10,13 +10,9 @@ A modern, minimalist web fiction portal inspired by pure AOSP/Pixel aesthetics.
 
 ## Usage
 1. Add new chapters to the `/chapters/` folder as `.md` files (e.g., `ch-04.md`).
-2. Add frontmatter to the top of your markdown files:
-   ```yaml
-   ---
-   title: "Chapter Title"
-   act: "Act Number"
-   date: "Publish Date"
-   ---
+2. Use standard Markdown for the title. Ensure your file starts with an `H1` tag:
+   ```markdown
+   # Chapter 4: The Silent Depths
    ```
 3. Update the links in `index.html` and `archive.html` to point to `./reader.html?ch=ch-04`.
 4. Commit and push.
