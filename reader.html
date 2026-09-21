@@ -145,6 +145,26 @@
         // Render Markdown
         document.getElementById('markdown-body').innerHTML = marked.parse(content);
         
+        // Auto-calculate Next/Prev links if chapter format is ch-XX
+        const match = chapterId.match(/ch-(\d+)/);
+        if (match) {
+          const num = parseInt(match[1]);
+          
+          if (num > 1) {
+            const prevId = 'ch-' + String(num - 1).padStart(2, '0');
+            const prevLink = document.getElementById('nav-prev');
+            prevLink.href = `./reader.html?ch=${prevId}`;
+            prevLink.querySelector('.nav-pager-title').textContent = `Chapter ${num - 1}`;
+          }
+          
+          // Show next link assuming it exists (could return 404 if it's the latest, but valid for now)
+          const nextId = 'ch-' + String(num + 1).padStart(2, '0');
+          const nextLink = document.getElementById('nav-next');
+          nextLink.style.display = 'flex';
+          nextLink.href = `./reader.html?ch=${nextId}`;
+          nextLink.querySelector('.nav-pager-title').textContent = `Chapter ${num + 1}`;
+        }
+        
         // Reveal
         document.getElementById('loading').style.display = 'none';
         document.getElementById('reader-content').classList.add('loaded');
