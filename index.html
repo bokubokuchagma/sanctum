@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aetheria Chronicles | Serialized Web Fiction</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('webfiction_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container-wide site-nav">
+      <a href="./index.html" class="site-logo">✧ AETHERIA</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><button class="theme-toggle-btn" aria-label="Toggle Theme">Theme</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <header class="hero">
+    <div class="container">
+      <h1 class="hero-title">Words that breathe in the dark.</h1>
+      <p>Immersive speculative stories published chapter-by-chapter.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h2 class="section-title">Latest Updates (Markdown Reader)</h2>
+      <ul class="chapter-feed">
+        <li class="chapter-item">
+          <a href="./reader.html?ch=ch-01" class="chapter-link">Chapter 1: The Broken Spire (Rendered from .md)</a>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top:0.3rem;">Aug 28, 2026 &bull; Click to see the dynamic Markdown parsing in action!</p>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    document.querySelector('.theme-toggle-btn').addEventListener('click', () => {
+      const root = document.documentElement;
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('webfiction_theme', next);
+    });
+  </script>
+</body>
+</html>
+

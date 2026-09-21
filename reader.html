@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reading... | Aetheria Chronicles</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  
+  <style>
+    /* Reader specific loading states */
+    #reader-content { opacity: 0; transition: opacity 0.4s ease; }
+    #reader-content.loaded { opacity: 1; }
+    .loading-spinner { text-align: center; padding: 4rem; color: var(--text-muted); }
+  </style>
+
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('webfiction_theme') || 
+        (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+</head>
+<body>
+
+  <div class="reading-progress-container" aria-hidden="true">
+    <div class="reading-progress-bar"></div>
+  </div>
+
+  <header class="site-header">
+    <div class="container-wide site-nav">
+      <a href="./index.html" class="site-logo"><span class="logo-mark">✧</span><span>AETHERIA</span></a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./archive.html">Archive</a></li>
+          <li>
+            <button class="theme-toggle-btn" aria-label="Toggle Theme">
+              <span aria-hidden="true">☀️</span><span class="theme-text">Theme</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="reader-toolbar">
+      <div class="breadcrumb-nav">
+        <a href="./index.html">Library</a> &rsaquo;
+        <a href="./archive.html">Archive</a> &rsaquo;
+        <span id="breadcrumb-chapter">Loading...</span>
+      </div>
+      <div class="reader-meta-tag" id="meta-act"></div>
+    </div>
+
+    <div id="loading" class="loading-spinner">Summoning chapter...</div>
+
+    <div id="reader-content">
+      <header class="chapter-header">
+        <div class="chapter-pretitle" id="display-act"></div>
+        <h1 class="chapter-main-title" id="display-title"></h1>
+        <div class="chapter-stats">
+          <span id="display-date"></span>
+        </div>
+      </header>
+
+      <article class="prose" id="markdown-body">
+        <!-- Markdown injected here -->
+      </article>
+
+      <nav class="chapter-nav-pager" aria-label="Chapter Pagination">
+        <a href="./archive.html" class="nav-pager-link prev" id="nav-prev">
+          <span class="nav-pager-label">&larr; Previous</span>
+          <span class="nav-pager-title">Archive</span>
+        </a>
+        <a href="#" class="nav-pager-link next" id="nav-next" style="display:none;">
+          <span class="nav-pager-label">Next Chapter &rarr;</span>
+          <span class="nav-pager-title">Continue</span>
+        </a>
+      </nav>
+    </div>
+  </main>
+
+  <script src="./assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const chapterId = urlParams.get('ch') || 'ch-01'; // Default to ch-01
+      
+      try {
+        const response = await fetch(`./chapters/${chapterId}.md`);
+        if (!response.ok) throw new Error('Chapter not found');
+        const text = await response.text();
+        
+        // Very basic frontmatter parser (--- ... ---)
+        let content = text;
+        let meta = { title: 'Untitled', act: '', date: '' };
+        
+        if (text.startsWith('---')) {
+          const endIdx = text.indexOf('---', 3);
+          if (endIdx > -1) {
+            const fm = text.substring(3, endIdx);
+            content = text.substring(endIdx + 3).trim();
+            
+            fm.split('\n').forEach(line => {
+              const colon = line.indexOf(':');
+              if (colon > -1) {
+                const key = line.substring(0, colon).trim();
+                const val = line.substring(colon + 1).trim().replace(/^['"](.*)['"]$/, '$1');
+                meta[key] = val;
+              }
+            });
+          }
+        }
+
+        // Setup custom renderer for images and scene breaks
+        const renderer = new marked.Renderer();
+        renderer.hr = function() {
+          return '<div class="scene-break flourish"><span>✦ &nbsp; ✧ &nbsp; ✦</span></div>';
+        };
+        renderer.image = function(href, title, text) {
+          return `<figure>
+            <img src="${href}" alt="${text}">
+            ${text ? `<figcaption>${text}</figcaption>` : ''}
+          </figure>`;
+        };
+        
+        marked.setOptions({ renderer });
+
+        // Apply metadata
+        document.title = `${meta.title} | Aetheria Chronicles`;
+        document.getElementById('breadcrumb-chapter').textContent = meta.title;
+        document.getElementById('meta-act').textContent = meta.act;
+        document.getElementById('display-act').textContent = meta.act;
+        document.getElementById('display-title').textContent = meta.title;
+        document.getElementById('display-date').textContent = meta.date;
+        
+        // Render Markdown
+        document.getElementById('markdown-body').innerHTML = marked.parse(content);
+        
+        // Reveal
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('reader-content').classList.add('loaded');
+
+      } catch (e) {
+        document.getElementById('loading').textContent = 'Error loading chapter. It may not exist yet.';
+      }
+    });
+  </script>
+</body>
+</html>
+
