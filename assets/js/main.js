@@ -1,24 +1,36 @@
+/**
+ * The First Elden Lord - Main Client Script
+ * Zero-dependency, lightweight, mobile-first.
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
-  const toggleBtn = document.querySelector('.theme-toggle-btn');
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', () => {
-      const root = document.documentElement;
-      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      localStorage.setItem('webfiction_theme', next);
+  // Theme Management
+  const themeToggle = document.querySelector('.theme-toggle-btn');
+  const root = document.documentElement;
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = root.getAttribute('data-theme') || 'dark';
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', nextTheme);
+      localStorage.setItem('webfiction_theme', nextTheme);
     });
   }
 
-  // Reading progress bar logic
+  // Reading Progress Bar
   const progressBar = document.querySelector('.reading-progress-bar');
   if (progressBar) {
-    window.addEventListener('scroll', () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalHeight > 0) {
-        const progress = (window.scrollY / totalHeight) * 100;
-        progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+    const updateProgress = () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const totalScrollable = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScrollable > 0) {
+        const percentage = Math.min(100, Math.max(0, (scrollY / totalScrollable) * 100));
+        progressBar.style.width = `${percentage}%`;
       }
-    }, { passive: true });
+    };
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress, { passive: true });
+    updateProgress();
   }
 });
-

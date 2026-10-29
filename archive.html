@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Story Archive | Elden Ring</title>
+  <title>Story Archive | The First Elden Lord</title>
+  <meta name="description" content="Complete archive of the chronicles of Godfrey, the First Elden Lord, and the Long March of the Tarnished.">
+
+  <!-- Google Fonts: Cinzel & Merriweather -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="./assets/css/style.css">
+
   <script>
     (function() {
       const savedTheme = localStorage.getItem('webfiction_theme') || 'dark';
@@ -16,57 +21,104 @@
   </script>
 </head>
 <body>
+
   <header class="site-header">
     <div class="container-wide site-nav">
-      <a href="./index.html" class="site-logo"></a>
+      <a href="./index.html" class="site-logo">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2L15 9H9L12 2M12 22L9 15H15L12 22M2 12L9 9V15L2 12M22 12L15 15V9L22 12Z"/>
+        </svg>
+        <span>ELDEN LORD</span>
+      </a>
       <nav>
         <ul class="nav-links">
           <li><a href="./index.html">Home</a></li>
           <li><a href="./archive.html" class="active">Archive</a></li>
-          <li><button class="theme-toggle-btn" aria-label="Toggle Theme">Theme</button></li>
+          <li>
+            <button class="theme-toggle-btn" aria-label="Toggle Theme">
+              <span aria-hidden="true">☼</span>
+              <span>Theme</span>
+            </button>
+          </li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main class="container">
-    <header class="hero" style="padding: 3rem 0 1rem;">
-      <h1 class="hero-title">Story Archives</h1>
-      <p class="hero-desc">The chronicles of the Lands Between.</p>
+    <header class="hero" style="padding: 3.5rem 0 2rem;">
+      <div class="hero-subtitle">Chronological Index</div>
+      <h1 class="hero-title">The Complete <span>Chronicles</span></h1>
+      <p class="hero-desc">All five chapters recounting the birth of the Golden Order, the subjugation of rival lords, and the exile into the Badlands.</p>
     </header>
 
+    <!-- Act I -->
     <section class="section">
       <div class="section-header">
-        <h2 class="section-title">The Shattering</h2>
+        <h2 class="section-title">Act I: The Crucible &amp; The Beast Regent</h2>
       </div>
       <ul class="chapter-feed">
         <li class="chapter-item">
-          <a href="./reader.html?ch=ch-01" class="chapter-link">Chapter 1: The Tarnished Returns</a>
-          <p class="chapter-subtext">A long lost soul emerges into Limgrave.</p>
+          <div class="chapter-header-row">
+            <a href="./reader.html?ch=ch-01" class="chapter-link">Chapter 1: The Chieftain &amp; The Lion Regent</a>
+            <span class="chapter-meta">Chapter 01</span>
+          </div>
+          <p class="chapter-subtext">Hoarah Loux is chosen by Queen Marika. To curb his boundless battle rage, he takes the beast regent Serosh upon his back.</p>
         </li>
         <li class="chapter-item">
-          <a href="./reader.html?ch=ch-02" class="chapter-link">Chapter 2: The Glintstone Academy</a>
-          <p class="chapter-subtext">The flooded ruins of Raya Lucaria.</p>
+          <div class="chapter-header-row">
+            <a href="./reader.html?ch=ch-02" class="chapter-link">Chapter 2: The Duel of the Storm Lord</a>
+            <span class="chapter-meta">Chapter 02</span>
+          </div>
+          <p class="chapter-subtext">Godfrey ascends the gale-swept parapets of Stormveil alone, breaking his golden greataxe as he fells the Storm Lord in single combat.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Act II -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Act II: The War of the Peaks</h2>
+      </div>
+      <ul class="chapter-feed">
+        <li class="chapter-item">
+          <div class="chapter-header-row">
+            <a href="./reader.html?ch=ch-03" class="chapter-link">Chapter 3: The War of the Giants</a>
+            <span class="chapter-meta">Chapter 03</span>
+          </div>
+          <p class="chapter-subtext">The campaign to the frozen summits of the Mountaintops to slay the colossi of stone and seal the apocalyptic Flame of Ruin.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Act III -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Act III: The Long March</h2>
+      </div>
+      <ul class="chapter-feed">
+        <li class="chapter-item">
+          <div class="chapter-header-row">
+            <a href="./reader.html?ch=ch-04" class="chapter-link">Chapter 4: The Dimming of Grace</a>
+            <span class="chapter-meta">Chapter 04</span>
+          </div>
+          <p class="chapter-subtext">With no enemies remaining, the gold fades from Godfrey's eyes. Marika divests him of grace, banishing him and his warriors.</p>
         </li>
         <li class="chapter-item">
-          <a href="./reader.html?ch=ch-03" class="chapter-link">Chapter 3: The Flame of Ruin</a>
-          <p class="chapter-subtext">A battle atop the snowy peaks of the Giants.</p>
-        </li>
-        <li class="chapter-item">
-          <a href="./reader.html?ch=ch-04" class="chapter-link">Chapter 4: The Crumbling City</a>
-          <p class="chapter-subtext">Unbinding Death in Farum Azula.</p>
-        </li>
-        <li class="chapter-item">
-          <a href="./reader.html?ch=ch-05" class="chapter-link">Chapter 5: The Elden Lord</a>
-          <p class="chapter-subtext">The final confrontation within the Erdtree.</p>
+          <div class="chapter-header-row">
+            <a href="./reader.html?ch=ch-05" class="chapter-link">Chapter 5: The Long March of the Tarnished</a>
+            <span class="chapter-meta">Chapter 05</span>
+          </div>
+          <p class="chapter-subtext">Godfrey leads the column of Tarnished across the weeping sea into the fog, swearing to return when grace beckons once more.</p>
         </li>
       </ul>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container" style="text-align: center; padding: 2rem 0; border-top: 1px solid var(--border-subtle); margin-top: 3rem;">
-      <p style="color: var(--text-muted); font-size: 0.85rem;">&copy; 2026 Elden Ring. Built with vanilla HTML & Markdown.</p>
+    <div class="container">
+      <p class="footer-quote">&ldquo;Upon my name as Godfrey, The First Elden Lord!&rdquo;</p>
+      <p>&copy; 2026 The First Elden Lord Chronicles. Hosted on GitHub Pages.</p>
     </div>
   </footer>
 

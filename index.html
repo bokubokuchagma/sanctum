@@ -3,11 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elden Ring | Serialized Web Fiction</title>
+  <title>The First Elden Lord | Serialized Fiction</title>
+  <meta name="description" content="An atmospheric chronicle following Lord Godfrey, the Beast Regent Serosh, and the rise and exile of the First Elden Lord.">
+
+  <!-- OpenGraph / Social Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The First Elden Lord - Serialized Chronicles">
+  <meta property="og:description" content="Before the Erdtree, there was only strength. The mythic saga of Hoarah Loux, Queen Marika's first consort.">
+  <meta property="og:image" content="./assets/images/ch05_lord.jpg">
+
+  <!-- Google Fonts: Cinzel & Merriweather -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Relative Stylesheet for GitHub Pages -->
   <link rel="stylesheet" href="./assets/css/style.css">
+
   <script>
     (function() {
       const savedTheme = localStorage.getItem('webfiction_theme') || 'dark';
@@ -16,52 +28,131 @@
   </script>
 </head>
 <body>
+
+  <!-- Navigation -->
   <header class="site-header">
     <div class="container-wide site-nav">
-      <a href="./index.html" class="site-logo"></a>
+      <a href="./index.html" class="site-logo">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2L15 9H9L12 2M12 22L9 15H15L12 22M2 12L9 9V15L2 12M22 12L15 15V9L22 12Z"/>
+        </svg>
+        <span>ELDEN LORD</span>
+      </a>
       <nav>
         <ul class="nav-links">
           <li><a href="./index.html" class="active">Home</a></li>
           <li><a href="./archive.html">Archive</a></li>
-          <li><button class="theme-toggle-btn" aria-label="Toggle Theme">Theme</button></li>
+          <li>
+            <button class="theme-toggle-btn" aria-label="Toggle Theme">
+              <span aria-hidden="true">☼</span>
+              <span>Theme</span>
+            </button>
+          </li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <header class="hero">
+  <!-- Hero Section -->
+  <section class="hero">
     <div class="container">
-      <h1 class="hero-title">Foul Tarnished, in search of the Elden Ring.</h1>
-      <p class="hero-desc">Follow the path of grace through the Lands Between.</p>
+      <div class="hero-subtitle">Serialized Fantasy Chronicles</div>
+      <h1 class="hero-title">A crown is warranted <span>with strength.</span></h1>
+      <p class="hero-desc">
+        Before the Golden Order, there was only blood and stone. Explore the untamed chronicle of Hoarah Loux, the beast regent Serosh, and the first warrior to ascend the throne of the Lands Between.
+      </p>
     </div>
-  </header>
+  </section>
 
   <main class="container">
+    <!-- Featured Series Showcase -->
     <section class="section">
-      <div class="section-header" style="display: flex; justify-content: space-between; align-items: baseline;">
-        <h2 class="section-title">Latest Updates</h2>
-        <a href="./archive.html" class="all-link">View full archive &rarr;</a>
+      <div class="section-header">
+        <h2 class="section-title">Current Saga</h2>
+        <a href="./archive.html" class="all-link">Browse Full Index &rarr;</a>
       </div>
+
+      <article class="series-showcase">
+        <div class="series-art-wrapper">
+          <img 
+            src="./assets/images/ch05_lord.jpg" 
+            alt="Lord Godfrey bearing Serosh" 
+            class="series-art" 
+            loading="lazy"
+          >
+        </div>
+        <div class="series-details">
+          <div class="series-tags">
+            <span class="tag">Complete Arc</span>
+            <span class="tag">High Fantasy</span>
+            <span class="tag">Elden Lore</span>
+          </div>
+          <h3 class="series-title">Godfrey: The First Elden Lord</h3>
+          <p class="series-synopsis">
+            Chosen by Queen Marika to spearhead the wars of the Erdtree, chieftain Hoarah Loux took upon his back the lion beast Serosh to suppress his primal fury. Follow his rise to godhood, his solo duel with the Storm Lord, and the tragic dimming of grace that birthed the Tarnished.
+          </p>
+          <div class="series-actions">
+            <a href="./reader.html?ch=ch-01" class="btn-primary">Begin Reading: Ch. 1 &rarr;</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Latest Chapters Feed -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Chronicles &amp; Chapters</h2>
+      </div>
+
       <ul class="chapter-feed">
         <li class="chapter-item">
-          <a href="./reader.html?ch=ch-05" class="chapter-link">Chapter 5: The Elden Lord</a>
-          <p class="chapter-subtext">The Shattering &bull; The final confrontation.</p>
+          <div class="chapter-header-row">
+            <a href="./reader.html?ch=ch-05" class="chapter-link">Chapter 5: The Long March of the Tarnished</a>
+            <span class="chapter-meta">Finale &bull; 6 min read</span>
+          </div>
+          <p class="chapter-subtext">Stripped of divine grace, Godfrey leads his warriors beyond the sea of mist into the desolate badlands.</p>
         </li>
+
         <li class="chapter-item">
-          <a href="./reader.html?ch=ch-04" class="chapter-link">Chapter 4: The Crumbling City</a>
-          <p class="chapter-subtext">The Shattering &bull; Farum Azula.</p>
+          <div class="chapter-header-row">
+            <a href="./reader.html?ch=ch-04" class="chapter-link">Chapter 4: The Dimming of Grace</a>
+            <span class="chapter-meta">Act III &bull; 5 min read</span>
+          </div>
+          <p class="chapter-subtext">The last enemy falls, the world goes quiet, and the hue of gold vanishes from the First Elden Lord's eyes.</p>
         </li>
+
         <li class="chapter-item">
-          <a href="./reader.html?ch=ch-03" class="chapter-link">Chapter 3: The Flame of Ruin</a>
-          <p class="chapter-subtext">The Shattering &bull; The Mountaintops.</p>
+          <div class="chapter-header-row">
+            <a href="./reader.html?ch=ch-03" class="chapter-link">Chapter 3: The War of the Giants</a>
+            <span class="chapter-meta">Act II &bull; 6 min read</span>
+          </div>
+          <p class="chapter-subtext">A campaign into frozen mountain peaks to confront colossi of stone and seal the inextinguishable Flame of Ruin.</p>
+        </li>
+
+        <li class="chapter-item">
+          <div class="chapter-header-row">
+            <a href="./reader.html?ch=ch-02" class="chapter-link">Chapter 2: The Duel of the Storm Lord</a>
+            <span class="chapter-meta">Act I &bull; 5 min read</span>
+          </div>
+          <p class="chapter-subtext">Godfrey casts aside his golden army to duel the tempestuous master of Stormveil in single combat.</p>
+        </li>
+
+        <li class="chapter-item">
+          <div class="chapter-header-row">
+            <a href="./reader.html?ch=ch-01" class="chapter-link">Chapter 1: The Chieftain &amp; The Lion Regent</a>
+            <span class="chapter-meta">Act I &bull; 6 min read</span>
+          </div>
+          <p class="chapter-subtext">Hoarah Loux is chosen by Queen Marika and takes the beast Serosh onto his back to quell his bloodlust.</p>
         </li>
       </ul>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
-    <div class="container" style="text-align: center; padding: 2rem 0; border-top: 1px solid var(--border-subtle); margin-top: 3rem;">
-      <p style="color: var(--text-muted); font-size: 0.85rem;">&copy; 2026 Elden Ring. Built with vanilla HTML & Markdown.</p>
+    <div class="container">
+      <p class="footer-quote">&ldquo;Long ago, the beast regent Serosh was grafted upon the back of Godfrey to quell his boundless battle rage.&rdquo;</p>
+      <p>&copy; 2026 The First Elden Lord Chronicles. Hosted on GitHub Pages.</p>
     </div>
   </footer>
 
