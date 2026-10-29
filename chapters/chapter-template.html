@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{CHAPTER_TITLE}} | The First Elden Lord</title>
+  <meta name="description" content="{{CHAPTER_DESCRIPTION}}">
+
+  <!-- OpenGraph / Social Meta -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{CHAPTER_TITLE}} - The First Elden Lord">
+  <meta property="og:description" content="{{CHAPTER_DESCRIPTION}}">
+  <meta property="og:image" content="../assets/images/ch05_lord.jpg">
+
+  <!-- Google Fonts: Cinzel & Merriweather -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Relative CSS for chapters inside /chapters/ folder -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('webfiction_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress-container" aria-hidden="true">
+    <div class="reading-progress-bar"></div>
+  </div>
+
+  <!-- Sticky Header -->
+  <header class="site-header">
+    <div class="container-wide site-nav">
+      <a href="../index.html" class="site-logo">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2L15 9H9L12 2M12 22L9 15H15L12 22M2 12L9 9V15L2 12M22 12L15 15V9L22 12Z"/>
+        </svg>
+        <span>ELDEN LORD</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../archive.html">Archive</a></li>
+          <li>
+            <button class="theme-toggle-btn" aria-label="Toggle Theme">
+              <span aria-hidden="true">☼</span>
+              <span>Theme</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Reader Main Content -->
+  <main class="container">
+    <div class="reader-toolbar">
+      <div class="breadcrumb-nav">
+        <a href="../index.html">Chronicles</a> &rsaquo;
+        <a href="../archive.html">Saga of Godfrey</a> &rsaquo;
+        <span>{{CHAPTER_NUMBER}}</span>
+      </div>
+    </div>
+
+    <article class="prose">
+      <h1>{{CHAPTER_TITLE}}</h1>
+
+      <figure>
+        <img src="{{IMAGE_SRC}}" alt="{{IMAGE_ALT}}" loading="lazy">
+        <figcaption>{{IMAGE_CAPTION}}</figcaption>
+      </figure>
+
+      {{CHAPTER_PROSE_CONTENT}}
+
+      <div class="scene-break">
+        <span>✦ &nbsp; ❖ &nbsp; ✦</span>
+      </div>
+
+      {{CHAPTER_PROSE_CONTINUED}}
+
+      <blockquote>
+        <p>{{LORE_QUOTE}}</p>
+      </blockquote>
+
+      {{CHAPTER_PROSE_CONCLUSION}}
+    </article>
+
+    <!-- Chapter Pager Navigation -->
+    <nav class="chapter-nav-pager" aria-label="Chapter Pagination">
+      <a href="{{PREV_HREF}}" class="nav-pager-link prev" id="nav-prev">
+        <span class="nav-pager-label">&larr; Previous</span>
+        <span class="nav-pager-title">{{PREV_TITLE}}</span>
+      </a>
+      <a href="{{NEXT_HREF}}" class="nav-pager-link next" id="nav-next">
+        <span class="nav-pager-label">Next Chapter &rarr;</span>
+        <span class="nav-pager-title">{{NEXT_TITLE}}</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-quote">&ldquo;A crown is warranted with strength.&rdquo;</p>
+      <p>&copy; 2026 The First Elden Lord Chronicles. Hosted on GitHub Pages.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

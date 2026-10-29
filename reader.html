@@ -99,7 +99,7 @@
       
       try {
         const response = await fetch(`./chapters/${chapterId}.md`);
-        if (!response.ok) throw new Error('Chapter not found');
+        if (!response.ok) throw new Error('Markdown not reachable');
         const text = await response.text();
         
         let pageTitle = 'Chapter';
@@ -108,23 +108,25 @@
           pageTitle = h1Match[1].trim();
         }
 
-        // Setup custom renderer for atmospheric Elden flourishes
+        // Setup custom renderer compatible with both marked v4 and v12+
         const renderer = new marked.Renderer();
         renderer.hr = function() {
           return '<div class="scene-break"><span>✦ &nbsp; ❖ &nbsp; ✦</span></div>';
         };
-        renderer.image = function(href, title, text) {
+        renderer.image = function(token, title, text) {
+          const href = (typeof token === 'object' && token !== null) ? token.href : token;
+          const alt = (typeof token === 'object' && token !== null) ? (token.text || '') : (text || '');
           return `<figure>
-            <img src="${href}" alt="${text || ''}" loading="lazy">
-            ${text ? `<figcaption>${text}</figcaption>` : ''}
+            <img src="${href}" alt="${alt}" loading="lazy">
+            ${alt ? `<figcaption>${alt}</figcaption>` : ''}
           </figure>`;
         };
         
-        marked.setOptions({ 
-          renderer,
-          gfm: true,
-          breaks: true
-        });
+        if (typeof marked.use === 'function') {
+          marked.use({ renderer, gfm: true, breaks: true });
+        } else if (typeof marked.setOptions === 'function') {
+          marked.setOptions({ renderer, gfm: true, breaks: true });
+        }
 
         document.title = `${pageTitle} | The First Elden Lord`;
         document.getElementById('breadcrumb-chapter').textContent = pageTitle;
@@ -138,16 +140,15 @@
           if (num > 1) {
             const prevId = 'ch-' + String(num - 1).padStart(2, '0');
             const prevLink = document.getElementById('nav-prev');
-            prevLink.href = `./reader.html?ch=${prevId}`;
+            prevLink.href = `./chapters/${prevId}.html`;
             prevLink.querySelector('.nav-pager-title').textContent = `Chapter ${num - 1}`;
           }
           
-          // Max chapters currently is 5
           if (num < 5) {
             const nextId = 'ch-' + String(num + 1).padStart(2, '0');
             const nextLink = document.getElementById('nav-next');
             nextLink.style.display = 'flex';
-            nextLink.href = `./reader.html?ch=${nextId}`;
+            nextLink.href = `./chapters/${nextId}.html`;
             nextLink.querySelector('.nav-pager-title').textContent = `Chapter ${num + 1}`;
           }
         }
@@ -156,10 +157,8 @@
         document.getElementById('reader-content').classList.add('loaded');
 
       } catch (e) {
-        document.getElementById('loading').innerHTML = `
-          <p style="color: #e57373;">Failed to unveil this chapter.</p>
-          <p style="font-size: 0.9rem; margin-top: 0.5rem;"><a href="./archive.html">&larr; Return to Archives</a></p>
-        `;
+        // Fallback: If fetch is blocked (e.g. file:// CORS) or missing, redirect to the pre-rendered HTML chapter
+        window.location.replace(`./chapters/${chapterId}.html`);
       }
     });
   </script>
